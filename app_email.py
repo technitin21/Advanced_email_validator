@@ -304,10 +304,17 @@ def validate_email_full(email: str, depth="mx", enable_dnsbl=False, enable_catch
 # UI Helper Components
 # -------------------------------------
 def status_badge(status: str):
-    if "Valid" in status:
+    status = status.lower()
+    if "valid" in status:
         color, icon = "#22c55e", "✅"
-    else:
+    elif "invalid" in status:
         color, icon = "#ef4444", "❌"
+    elif "catch" in status:
+        color, icon = "#f59e0b", "⚠️"
+    elif "unknown" in status:
+        color, icon = "#6b7280", "❓"
+    else:
+        color, icon = "#3b82f6", "ℹ️"
 
     return f"""
     <span style='background:{color};
@@ -318,9 +325,10 @@ def status_badge(status: str):
                  font-weight:600;
                  display:inline-block;
                  white-space:nowrap;'>
-        {icon} {status}
+        {icon} {status.title()}
     </span>
     """
+
 
 
 
@@ -334,19 +342,17 @@ def info_kv(label: str, value: str):
 
 def single_result_card(res: dict):
     st.subheader("Result")
-    st.markdown(status_badge(f"{res['email']} → {res['status']}"), unsafe_allow_html=True)
-    st.markdown(
-    f"""
-    <div style="display:inline-block; padding:6px 12px; border-radius:8px; 
-                background-color:#f1f1f1; font-size:14px; font-weight:500; 
-                color:#333; margin-top:8px;">
-        {res['email']} → {res['status']}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-    # st.markdown(f"<p style='font-size:14px; color:green;'>{status}</p>", unsafe_allow_html=True)
+    st.markdown(status_badge(res['status']), unsafe_allow_html=True)
+#     st.markdown(
+#     f"""
+#     <div style="display:inline-block; padding:6px 12px; border-radius:8px; 
+#                 background-color:#f1f1f1; font-size:14px; font-weight:500; 
+#                 color:#333; margin-top:8px;">
+#         {res['email']} → {res['status']}
+#     </div>
+#     """,
+#     unsafe_allow_html=True
+# )
     st.progress(int(res.get("score", 0)) / 100.0)
     c1, c2, c3 = st.columns(3)
     c1.metric("Reason", res.get("reason", "OK"))

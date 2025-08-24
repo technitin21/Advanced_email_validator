@@ -20,7 +20,7 @@ import altair as alt
 # App Config
 # -------------------------------------
 st.set_page_config(page_title="Email Validator", page_icon="📧", layout="wide")
-APP_TITLE = "📧 Advanced Email Validation Tool"
+APP_TITLE = "Advanced Email Validation Tool"
 APP_DESC = (
     "Validate single or bulk email addresses with syntax, DNS, MX, SMTP, disposable, role-based, "
     "catch-all, DNSBL checks, and a deliverability score. Export **All / Valid / Invalid** results."
@@ -467,13 +467,13 @@ else:
             st.subheader("Preview (first 200 rows)")
             st.dataframe(out.head(200))
 
-            # Export options
-            st.subheader("Export Results")
-            export_option = st.radio(
-                "Choose export type:",
-                ["All Results", "Only Valid", "Only Invalid"],
-                horizontal=True
-            )
+            # # Export options
+            # st.subheader("Export Results")
+            # export_option = st.radio(
+            #     "Choose export type:",
+            #     ["All Results", "Only Valid", "Only Invalid"],
+            #     horizontal=True
+            # )
 
             if export_option == "Only Valid":
                 export_df = out[out["status"].str.contains("✅")]

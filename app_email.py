@@ -321,7 +321,7 @@ def info_kv(label: str, value: str):
 def single_result_card(res: dict):
     st.subheader("Result")
     # st.markdown(status_badge(f"{res['email']} → {res['status']}"), unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:14px; color:green;'>{result}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:14px; color:green;'>{status}</p>", unsafe_allow_html=True)
     st.progress(int(res.get("score", 0)) / 100.0)
     c1, c2, c3 = st.columns(3)
     c1.metric("Reason", res.get("reason", "OK"))

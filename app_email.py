@@ -405,9 +405,9 @@ else:
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         email_col = df.columns[0]
-        st.write(f"📂 Detected email column: **{email_col}**")
+        st.write(f"Detected email column: **{email_col}**")
 
-        run = st.button("✅ Validate Emails", use_container_width=True)
+        run = st.button("Validate Emails", use_container_width=False)
         if run:
             progress_bar = st.progress(0)
             status_text = st.empty()

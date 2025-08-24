@@ -306,16 +306,16 @@ def validate_email_full(email: str, depth="mx", enable_dnsbl=False, enable_catch
 def status_badge(text: str):
     color = "#22c55e" if "Valid" in text else "#ef4444"
     return f"""
-    <span style='
-        display:inline-block;
-        background:{color};
-        padding:4px 10px;
-        border-radius:12px;
-        color:white;
-        font-weight:600;
-        font-size:12px;
-        white-space:nowrap;
-    '>{text}</span>
+    <span style='background:{color}; 
+                 padding:2px 8px; 
+                 border-radius:12px; 
+                 color:white; 
+                 font-size:12px; 
+                 font-weight:600; 
+                 display:inline-block; 
+                 white-space:nowrap;'>
+        {text}
+    </span>
     """
 
 

@@ -305,10 +305,19 @@ def validate_email_full(email: str, depth="mx", enable_dnsbl=False, enable_catch
 # -------------------------------------
 def status_badge(text: str):
     color = "#22c55e" if "Valid" in text else "#ef4444"
-    return f'''
-    <div style='background:{color};padding:12px 16px;border-radius:12px;color:white;
-                text-align:center;font-weight:700;'>{text}</div>
-    '''
+    return f"""
+    <span style='
+        display:inline-block;
+        background:{color};
+        padding:4px 10px;
+        border-radius:12px;
+        color:white;
+        font-weight:600;
+        font-size:12px;
+        white-space:nowrap;
+    '>{text}</span>
+    """
+
 
 def info_kv(label: str, value: str):
     return f'''

@@ -467,19 +467,19 @@ else:
             st.subheader("Preview (first 200 rows)")
             st.dataframe(out.head(200))
 
-            # # Export options
-            # st.subheader("Export Results")
-            # export_option = st.radio(
-            #     "Choose export type:",
-            #     ["All Results", "Only Valid", "Only Invalid"],
-            #     horizontal=True
-            # )
+            # Export options
+            st.subheader("Export Results")
+            export_option = st.radio(
+                "Choose export type:",
+                ["All Results", "Only Valid", "Only Invalid"],
+                horizontal=True
+            )
 
-            # if export_option == "Only Valid":
-            #     export_df = out[out["status"].str.contains("✅")]
-            # elif export_option == "Only Invalid":
-            #     export_df = out[~out["status"].str.contains("✅")]
-            # else:
+            if export_option == "Only Valid":
+                export_df = out
+            elif export_option == "Only Invalid":
+                export_df = out
+            else:
                 export_df = out
 
             csv = export_df.to_csv(index=False).encode("utf-8")

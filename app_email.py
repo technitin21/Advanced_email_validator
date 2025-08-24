@@ -303,20 +303,25 @@ def validate_email_full(email: str, depth="mx", enable_dnsbl=False, enable_catch
 # -------------------------------------
 # UI Helper Components
 # -------------------------------------
-def status_badge(text: str):
-    color = "#22c55e" if "Valid" in text else "#ef4444"
+def status_badge(status: str):
+    if "Valid" in status:
+        color, icon = "#22c55e", "✅"
+    else:
+        color, icon = "#ef4444", "❌"
+
     return f"""
-    <span style='background:{color}; 
-                 padding:2px 8px; 
-                 border-radius:12px; 
-                 color:white; 
-                 font-size:12px; 
-                 font-weight:600; 
-                 display:inline-block; 
+    <span style='background:{color};
+                 padding:2px 8px;
+                 border-radius:12px;
+                 color:white;
+                 font-size:12px;
+                 font-weight:600;
+                 display:inline-block;
                  white-space:nowrap;'>
-        {text}
+        {icon} {status}
     </span>
     """
+
 
 
 def info_kv(label: str, value: str):

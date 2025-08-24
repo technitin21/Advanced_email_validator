@@ -342,7 +342,8 @@ def info_kv(label: str, value: str):
 
 def single_result_card(res: dict):
     st.subheader("Result")
-    st.markdown(status_badge(res['status']), unsafe_allow_html=True)
+    st.markdown(status_badge(f"{res['email']} → {res['status']}"), unsafe_allow_html=True)
+
 #     st.markdown(
 #     f"""
 #     <div style="display:inline-block; padding:6px 12px; border-radius:8px; 

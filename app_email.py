@@ -353,23 +353,23 @@ def single_result_card(res: dict):
 #     """,
 #     unsafe_allow_html=True
 # )
-    st.progress(int(res.get("score", 0)) / 100.0)
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Reason", res.get("reason", "OK"))
-    c2.metric("Type", res.get("type", "—"))
-    c3.metric("Score", res.get("score", 0))
+    # st.progress(int(res.get("score", 0)) / 100.0)
+    # c1, c2, c3 = st.columns(3)
+    # c1.metric("Reason", res.get("reason", "OK"))
+    # c2.metric("Type", res.get("type", "—"))
+    # c3.metric("Score", res.get("score", 0))
 
-    with st.expander("Details"):
-        html = "".join([
-            info_kv("Disposable", res.get("disposable", "No")),
-            info_kv("Role-based", res.get("role_based", "No")),
-            info_kv("Catch-all", res.get("catch_all", "No")),
-            info_kv("DNSBL Listed", res.get("dnsbl_listed", "No")),
-            info_kv("MX Host", res.get("mx_host", "—")),
-            info_kv("SMTP Code", str(res.get("smtp_code", "—"))),
-            info_kv("SMTP Message", res.get("smtp_msg", "—")),
-        ])
-        st.markdown(f"<div style='border:1px solid #eee;border-radius:12px'>{html}</div>", unsafe_allow_html=True)
+    # with st.expander("Details"):
+    #     html = "".join([
+    #         info_kv("Disposable", res.get("disposable", "No")),
+    #         info_kv("Role-based", res.get("role_based", "No")),
+    #         info_kv("Catch-all", res.get("catch_all", "No")),
+    #         info_kv("DNSBL Listed", res.get("dnsbl_listed", "No")),
+    #         info_kv("MX Host", res.get("mx_host", "—")),
+    #         info_kv("SMTP Code", str(res.get("smtp_code", "—"))),
+    #         info_kv("SMTP Message", res.get("smtp_msg", "—")),
+    #     ])
+    #     st.markdown(f"<div style='border:1px solid #eee;border-radius:12px'>{html}</div>", unsafe_allow_html=True)
 
 def pie_chart(valid: int, invalid: int):
     data = pd.DataFrame({

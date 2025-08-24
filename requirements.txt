@@ -2,3 +2,4 @@ streamlit
 pandas
 dnspython
 idna
+altair

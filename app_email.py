@@ -475,12 +475,12 @@ else:
             #     horizontal=True
             # )
 
-            if export_option == "Only Valid":
-                export_df = out[out["status"].str.contains("✅")]
-            elif export_option == "Only Invalid":
-                export_df = out[~out["status"].str.contains("✅")]
-            else:
-                export_df = out
+            # if export_option == "Only Valid":
+            #     export_df = out[out["status"].str.contains("✅")]
+            # elif export_option == "Only Invalid":
+            #     export_df = out[~out["status"].str.contains("✅")]
+            # else:
+            #     export_df = out
 
             csv = export_df.to_csv(index=False).encode("utf-8")
             st.download_button(

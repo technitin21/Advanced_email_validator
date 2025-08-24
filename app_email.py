@@ -303,34 +303,20 @@ def validate_email_full(email: str, depth="mx", enable_dnsbl=False, enable_catch
 # -------------------------------------
 # UI Helper Components
 # -------------------------------------
-def status_badge(status: str):
-    status = status.lower()
-    if "valid" in status:
-        color, icon = "#22c55e", "✅"
-    elif "invalid" in status:
-        color, icon = "#ef4444", "❌"
-    elif "catch" in status:
-        color, icon = "#f59e0b", "⚠️"
-    elif "unknown" in status:
-        color, icon = "#6b7280", "❓"
-    else:
-        color, icon = "#3b82f6", "ℹ️"
-
+def status_badge(text: str):
+    color = "#22c55e" if "Valid" in text else "#ef4444"
     return f"""
-    <span style='background:{color};
-                 padding:2px 8px;
-                 border-radius:12px;
-                 color:white;
-                 font-size:12px;
-                 font-weight:600;
-                 display:inline-block;
-                 white-space:nowrap;'>
-        {icon} {status.title()}
-    </span>
+    <span style='
+        display:inline-block;
+        background:{color};
+        padding:4px 10px;
+        border-radius:12px;
+        color:white;
+        font-weight:600;
+        font-size:12px;
+        white-space:nowrap;
+    '>{text}</span>
     """
-
-
-
 
 def info_kv(label: str, value: str):
     return f'''
@@ -342,7 +328,8 @@ def info_kv(label: str, value: str):
 
 def single_result_card(res: dict):
     st.subheader("Result")
-    st.markdown(status_badge(f"{res['email']} → {res['status']}"), unsafe_allow_html=True)
+    st.markdown(f"{res['email']} → {status_badge(res['status'])}", unsafe_allow_html=True)
+
 
 #     st.markdown(
 #     f"""
